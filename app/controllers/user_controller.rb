@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      sign_in(:user, @user)
       redirect_to new_user_path
     else
       render :new, status: :unprocessable_entity

@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
+
   def new
     @post = Post.new
   end
@@ -11,6 +13,10 @@ class PostsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def index
+    @posts = Post.all
   end
 
   private

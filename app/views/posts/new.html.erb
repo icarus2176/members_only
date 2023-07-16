@@ -1,0 +1,15 @@
+<% if @post.errors.any?%>
+  <ul>
+    <% @post.errors.each do |error| %>
+      <li><%= error.full_message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @post do |form| %>
+  <%= form.label "Title" %>
+  <%= form.text_field :title %>
+  <%= form.label "Text" %>
+  <%= form.text_field :body %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+<% end %>
