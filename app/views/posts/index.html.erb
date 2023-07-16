@@ -1,9 +1,9 @@
-<% @post.each do |post| %>
+<% @posts.each do |post| %>
   <ul>
     <li><%= post.title %></li>
-    <% if user.signed_in? %>
-      <li><%= (User.find_by_id(params[post.id])).username %></li>
+    <% if user_signed_in? %>
+      <li><%= User.find_by_id(post.user_id).email %></li>
       <% end %>
-    <li><%= podt.text %></li>
+    <li><%= post.body %></li>
   </ul>
 <% end %>
