@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      UserMailer.with(user: @user).confirmation_email.deliver_now!
       sign_in(:user, @user)
       redirect_to new_user_path
     else
